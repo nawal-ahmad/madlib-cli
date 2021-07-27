@@ -20,9 +20,12 @@ def welcome():
 
 
 def read_template(path):
-    with open(path, "r") as file:
-        file = file.read()
-    return file.strip()
+    try:
+        with open(path, "r") as file:
+            file = file.read()
+        return file.strip()
+    except FileNotFoundError:
+        raise
 
 
 # Prompt the user to submit a series of words to fit each of the required components of the Madlib template.
@@ -33,7 +36,7 @@ def parse_template(text):
         text = text.replace(word, '', 1)
     return (text, tuple(parse))
 
-
+#  Function for merge the text with the empty brackets and the user's answer
 def merge(text, parse):
     new_text = text.format(*parse)
     with open('assets/parse_merge.text', 'w') as output:
