@@ -25,7 +25,7 @@ def read_template(path: str) -> str:
             file = file.read()
         return file.strip()
     except FileNotFoundError:
-        raise FileNotFoundError('The file not found')
+        raise
 
 # Prompt the user to submit a series of words to fit each of the required components of the Madlib template.
 # find all the words inside brackets,and replace them with an empty
@@ -45,3 +45,18 @@ def merge(text, parse):
     with open('assets/parse_merge.text', 'w') as output:
         output.write(new_text)
     return new_text
+
+
+def sum_matrix(matrix):
+    length = len(matrix)
+    arr_sum = []
+    for i in range(length):
+        sum = 0
+        for element in matrix[i]:
+            sum += element
+        arr_sum += [sum]
+    return arr_sum
+
+
+m = [[1, 2], [3, 4], [5, 6, 7]]
+print(sum_matrix(m))
