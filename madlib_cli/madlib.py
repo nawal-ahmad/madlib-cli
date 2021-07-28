@@ -19,24 +19,27 @@ def welcome():
 # Read a template Madlib file (Example), and parse that file into usable parts.
 
 
-def read_template(path):
+def read_template(path: str) -> str:
     try:
         with open(path, "r") as file:
             file = file.read()
         return file.strip()
     except FileNotFoundError:
-        raise
-
+        raise FileNotFoundError('The file not found')
 
 # Prompt the user to submit a series of words to fit each of the required components of the Madlib template.
 # find all the words inside brackets,and replace them with an empty
-def parse_template(text):
+
+
+def parse_template(text: str) -> list:
     parse = re.findall(r'\{(.*?)\}', text)
     for word in parse:
         text = text.replace(word, '', 1)
     return (text, tuple(parse))
 
 #  Function for merge the text with the empty brackets and the user's answer
+
+
 def merge(text, parse):
     new_text = text.format(*parse)
     with open('assets/parse_merge.text', 'w') as output:
