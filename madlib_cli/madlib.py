@@ -1,4 +1,4 @@
-#read_template, parse_template, merge
+# read_template, parse_template, merge
 
 import re
 from typing import Text
@@ -47,16 +47,24 @@ def merge(text, parse):
     return new_text
 
 
-def sum_matrix(matrix):
-    length = len(matrix)
-    arr_sum = []
-    for i in range(length):
-        sum = 0
-        for element in matrix[i]:
-            sum += element
-        arr_sum += [sum]
-    return arr_sum
+def the_game():
+
+    print('Welcome to Madlib Game')
+    print('Are you ready 🔥🔥')
+    print('answer the questions and enjoy it!')
+
+    text = read_template('assets/game.txt')
+
+    text, parse = parse_template(text)
+    input_list = []
+    for i in parse:
+        user_input = input(f'Enter a {i} ')
+        input_list.append(user_input)
+
+    text_output = merge(text, input_list)
+
+    return text_output
 
 
-m = [[1, 2], [3, 4], [5, 6, 7]]
-print(sum_matrix(m))
+if __name__ == '__main__':
+    print(the_game())
